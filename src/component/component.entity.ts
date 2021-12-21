@@ -8,7 +8,7 @@ export class ComponentEntity extends BaseEntity {
     @Column({type:'int', name: 'character_id'})
     characterId: number;
 
-    @Column({type:'varchar', name: 'component_description', nullable: true})
+    @Column({type:'longtext', name: 'component_description', nullable: true})
     componentDescription: string;
 
     @Column({type:'int', name: 'component_rank', nullable: true})

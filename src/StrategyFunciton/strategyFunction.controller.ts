@@ -1,7 +1,7 @@
 import { Controller, Get, Response, Post, Body, UploadedFile, UseInterceptors} from '@nestjs/common';
-import { Service } from './strategy.service';
+import { Service } from './strategyFunction.service';
 import { timeoutQuery } from '../util/timeoutQuery';
-@Controller('strategy')
+@Controller('strategyFunction')
 export class StrategyController{
     constructor(private readonly StrategyService: Service){ }
     @Get('getAll')
@@ -23,7 +23,7 @@ export class StrategyController{
     @Post('delete')
     delet(@Body() bodyData, @Response() res) {
         timeoutQuery({
-            callback: this.StrategyService.deleteById(bodyData.strategyId),
+            callback: this.StrategyService.deleteById(bodyData.strategyFunctionId),
             time: 500,
             responseAnno: res
         });
@@ -31,16 +31,8 @@ export class StrategyController{
     @Post('get')
     find(@Body() bodyData, @Response() res) {
         timeoutQuery({
-            callback: this.StrategyService.getById(bodyData.strategyId),
+            callback: this.StrategyService.getById(bodyData.strategyFunctionId),
             time: 1000,
-            responseAnno: res
-        });
-    }
-    @Post('getByCharacterId')
-    findByCharacterId(@Body() bodyData, @Response() res) {
-        timeoutQuery({
-            callback: this.StrategyService.getIds(bodyData.characterId, bodyData.opponentId),
-            time: 1500,
             responseAnno: res
         });
     }

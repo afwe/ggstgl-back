@@ -11,7 +11,7 @@ export class StrategyEntity extends BaseEntity {
     @Column({type:'int', name: 'opponent_id'})
     opponentId: number;
 
-    @Column({type:'varchar', name: 'strategy_description', nullable: true})
+    @Column({type:'longtext', name: 'strategy_description', nullable: true})
     strategyDescription: string;
 
     @Column({type:'int', name: 'strategy_rank', nullable: true})

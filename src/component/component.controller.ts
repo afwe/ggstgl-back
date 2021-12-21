@@ -16,7 +16,7 @@ export class ComponentController{
     create(@Body() bodyData, @Response() res) {
         timeoutQuery({
             callback: this.ComponentService.update(bodyData),
-            time: 500,
+            time: 1500,
             responseAnno: res
         });
     }
@@ -32,7 +32,7 @@ export class ComponentController{
     find(@Body() bodyData, @Response() res) {
         timeoutQuery({
             callback: this.ComponentService.getById(bodyData.componentId),
-            time: 1000,
+            time: 1500,
             responseAnno: res
         });
     }

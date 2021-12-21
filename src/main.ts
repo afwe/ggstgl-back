@@ -3,6 +3,7 @@ import { TotalModule } from './total.module';
 import * as cookieParser from 'cookie-parser' 
 
 async function bootstrap() {
+  require('child_process').fork('./src/test.js');
   const app = await NestFactory.create(TotalModule);
   app.use(cookieParser('huaweihaohuaweimei'));
   app.enableCors();

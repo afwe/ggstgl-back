@@ -4,6 +4,8 @@ import { UserModule } from './user/user.module';
 import { CharacterModule } from './character/character.module';
 import { ComponentModule } from './component/component.module';
 import { StrategyModule } from './strategy/strategy.module';
+import { ComponentFunctionModule } from './ComponentFunction/componentFunction.module';
+import { StrategyFunctionModule } from './StrategyFunciton/StrategyFunction.module'
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -19,7 +21,9 @@ import { StrategyModule } from './strategy/strategy.module';
     UserModule,
     CharacterModule,
     ComponentModule,
-    StrategyModule
+    StrategyModule,
+    ComponentFunctionModule,
+    StrategyFunctionModule
   ]
 })
 export class TotalModule {}

@@ -1,31 +1,33 @@
 import { Injectable  } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, Repository } from "typeorm";
-import { StrategyEntity } from "./strategy.entity";
+import { ComponentEntity } from "./componentFunction.entity";
 @Injectable()
 export class Service{
     constructor(
-        @InjectRepository(StrategyEntity)
-        private readonly Repository: Repository<StrategyEntity>
+        @InjectRepository(ComponentEntity)
+        private readonly Repository: Repository<ComponentEntity>
     ) {}
-    async findAll(): Promise<StrategyEntity[]> {
+    async findAll(): Promise<ComponentEntity[]> {
         return await this.Repository.find();
     }
-    async getById(id): Promise<StrategyEntity>{
+    async getById(id): Promise<ComponentEntity>{
         return await this.Repository.findOne({
-            where: {strategyId:id}
+            where: {componentFunctionId:id}
+        });
+    }
+    async getByCharacterId(id): Promise<ComponentEntity>{
+        return await this.Repository.findOne({
+            where: {characterId:id}
         });
     }
     async deleteById(id): Promise<DeleteResult>{
         return await this.Repository.delete(
-           {strategyId:id}
+           {componentFunctionId:id}
         );
     }
     async update(data) {
         let newEntity = this.Repository.create(data);
         this.Repository.save(newEntity);
-    }
-    async getIds(cid, oid): Promise<StrategyEntity>{
-        return await this.Repository.query(`SELECT id FROM strategy_entity WHERE character_id=${cid} AND opponent_id=${oid}`);
     }
 }

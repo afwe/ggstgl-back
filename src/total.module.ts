@@ -1,13 +1,13 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './user/user.module';
-import { CharacterModule } from './character/character.module';
-import { ComponentModule } from './component/component.module';
-import { StrategyModule } from './strategy/strategy.module';
-import { ComponentFunctionModule } from './ComponentFunction/componentFunction.module';
-import { StrategyFunctionModule } from './StrategyFunciton/StrategyFunction.module';
-import { MailModule } from './Mail/mail.module';
-import { CommitModule } from './commit/commit.module';
+import { UserModule } from './logic/user/user.module';
+import { CharacterModule } from './logic/character/character.module';
+import { ComponentModule } from './logic/component/component.module';
+import { StrategyModule } from './logic/strategy/strategy.module';
+import { ComponentFunctionModule } from './logic/ComponentFunction/componentFunction.module';
+import { StrategyFunctionModule } from './logic/StrategyFunciton/StrategyFunction.module';
+import { MailModule } from './logic/mail/mail.module';
+import { CommitModule } from './logic/commit/commit.module';
 import { CookieMiddleware } from "./middleware/userMiddleware";
 @Module({
   imports: [
@@ -33,6 +33,6 @@ import { CookieMiddleware } from "./middleware/userMiddleware";
 })
 export class TotalModule  implements NestModule{
   configure(consumer: MiddlewareConsumer) {
-      consumer.apply(CookieMiddleware).forRoutes('user');
+      consumer.apply(CookieMiddleware).forRoutes('commit');
   }
 }

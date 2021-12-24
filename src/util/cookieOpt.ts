@@ -1,1 +1,1 @@
-export const cookieLife = 60 * 1000;
+export const cookieLife = 60 * 60 * 1000;

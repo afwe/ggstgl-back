@@ -13,4 +13,5 @@ export class StrategyEntity extends BaseEntity {
 
     @Column({type:'float', name: 'strategy_function_rank', nullable: true})
     strategyFunctionRank: number;
+
 }

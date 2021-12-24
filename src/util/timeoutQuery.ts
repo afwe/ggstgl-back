@@ -6,7 +6,7 @@ const emptySuccessResponse = {
     msg: 'success',
 };
 export const timeoutQuery = (props) => {
-    const {callback, time, responseAnno} = props;
+    const {callback, time, responseAnno, successFunc = []} = props;
     function queryTimeOut(time) {
         return new Promise((resolve, reject)=>{
             setTimeout(()=>{
@@ -16,14 +16,30 @@ export const timeoutQuery = (props) => {
     };
     Promise.race([
         callback.then((response)=>{
-            if(!response){
+            if(!response.msg){
+                try{
+                    successFunc.forEach(func=>{
+                            func();
+                        }) 
+                    }
+                    catch(err){
+                        console.log(err);
+                    }
+                    if(!response){
+                        responseAnno.send({
+                            code: 200,
+                            data: emptySuccessResponse
+                        });
+                    } else{
+                        responseAnno.send({
+                            code: 200,
+                            data: response
+                    });
+                }
+            }
+            else{
                 responseAnno.send({
-                    code: 200,
-                    data: emptySuccessResponse
-                });
-            } else{
-                responseAnno.send({
-                    code: 200,
+                    code: 500,
                     data: response
                 });
             }

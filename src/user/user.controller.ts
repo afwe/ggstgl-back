@@ -1,12 +1,13 @@
-import { Controller, Get, Response, Post, Body} from '@nestjs/common';
-import { UserService } from './user.service';
+import { Controller, Get, Response, Post, Body, Request } from '@nestjs/common';
+import { Service } from './user.service';
 import { timeoutQuery } from '../util/timeoutQuery';
+import { cookieLife } from '../util/cookieOpt';
 @Controller('user')
 export class UserController{
-    constructor(private readonly userService: UserService){ }
+    constructor(private readonly userService: Service){ }
     @Get('list')
     findAll(@Response() res) {
-        res.cookie('username', 'aabbcc我是cookie', {maxAge: 1000*60*10, httpOnly: true, signed: true});
+        res.cookie('username', 'aabbcc我是cookie', {maxAge: 1000*60*10, httpOnly: true});
         timeoutQuery({
             callback: this.userService.findAll(),
             time: 500,
@@ -30,12 +31,17 @@ export class UserController{
         });
     }
     @Post('login')
-    find(@Body() bodyData, @Response() res) {
-        res.cookie('username', 'aabbcc我是cookie', {maxAge: 1000*60*10, httpOnly: true, signed: true});
+    find(@Body() bodyData, @Request() req, @Response() res) {
+        console.log(req);
         timeoutQuery({
-            callback: this.userService.login(bodyData.componentId),
+            callback: this.userService.login(bodyData),
             time: 1000,
-            responseAnno: res
+            responseAnno: res,
+            successFunc:[
+                ()=>{
+                    res.cookie('userId', bodyData.userId, {maxAge: cookieLife, httpOnly: true, signed: true})
+                }
+            ]
         });
     }
     @Post('update')

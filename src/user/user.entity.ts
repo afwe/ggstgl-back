@@ -5,9 +5,15 @@ export class UserEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({type:'varchar', name:'name'})
-    name: string;
+    @Column({type:'varchar', name:'user_id'})
+    userId: string;
 
     @Column({type:'varchar', name:'password'})
-    password: string;
+    userPwd: string;
+
+    @Column({type:'varchar', name:'user_name', nullable: true, default: " "})
+    userName: string;
+
+    @Column({type:'int', name:'is_admin', default:0})
+    isAdmin: number;
 }

@@ -15,7 +15,7 @@ const retPromise = (isSuccess, value)=>{
 }
 
 @Injectable()
-export class Service{
+export class UserService{
     constructor(
         @InjectRepository(UserEntity)
         private readonly userRepository: Repository<UserEntity>

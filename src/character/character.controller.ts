@@ -13,7 +13,7 @@ export class CharacterController{
     findAll(@Response() res) {
         timeoutQuery({
             callback: this.CharacterService.findAll(),
-            time: 1000,
+            time: 2000,
             responseAnno: res
         });
     }

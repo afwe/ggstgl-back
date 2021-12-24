@@ -16,4 +16,7 @@ export class StrategyEntity extends BaseEntity {
 
     @Column({type:'int', name: 'strategy_rank', nullable: true})
     strategyRank: number;
+
+    @Column({type:'int', name:'commiter_id', nullable: true})
+    commiterId: number;
 }

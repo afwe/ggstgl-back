@@ -13,4 +13,7 @@ export class ComponentEntity extends BaseEntity {
 
     @Column({type:'int', name: 'component_rank', nullable: true})
     componentRank: number;
+
+    @Column({type:'int', name:'commiterId', nullable: true})
+    commiterId: number;
 }

@@ -10,7 +10,7 @@ export const timeoutQuery = (props) => {
     function queryTimeOut(time) {
         return new Promise((resolve, reject)=>{
             setTimeout(()=>{
-                reject(err)
+                reject(err);
             }, time);
         });
     };
@@ -20,21 +20,21 @@ export const timeoutQuery = (props) => {
                 try{
                     successFunc.forEach(func=>{
                             func();
-                        }) 
-                    }
-                    catch(err){
-                        console.log(err);
-                    }
-                    if(!response){
-                        responseAnno.send({
-                            code: 200,
-                            data: emptySuccessResponse
-                        });
-                    } else{
-                        responseAnno.send({
-                            code: 200,
-                            data: response
+                    }) 
+                }
+                catch(err){
+                    console.log(err);
+                }
+                if(!response){
+                    responseAnno.send({
+                        code: 200,
+                        data: emptySuccessResponse
                     });
+                } else{
+                    responseAnno.send({
+                        code: 200,
+                        data: response
+                });
                 }
             }
             else{

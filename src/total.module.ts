@@ -1,5 +1,8 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { CookieMiddleware } from "./middleware/userMiddleware";
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { sqlOpt } from './util/sqlOpt'
+
 import { UserModule } from './logic/user/user.module';
 import { CharacterModule } from './logic/character/character.module';
 import { ComponentModule } from './logic/component/component.module';
@@ -8,7 +11,11 @@ import { ComponentFunctionModule } from './logic/ComponentFunction/componentFunc
 import { StrategyFunctionModule } from './logic/StrategyFunciton/StrategyFunction.module';
 import { MailModule } from './logic/mail/mail.module';
 import { CommitModule } from './logic/commit/commit.module';
-import { CookieMiddleware } from "./middleware/userMiddleware";
+import { CounterModule } from './logic/counter/counter.module';
+import { CharacterStatusModule } from './logic/characterStatus/character.module';
+import { LogStatusModule } from './logic/logStatus/logStatus.module';
+
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -28,7 +35,10 @@ import { CookieMiddleware } from "./middleware/userMiddleware";
     ComponentFunctionModule,
     StrategyFunctionModule,
     MailModule,
-    CommitModule
+    CommitModule,
+    CounterModule,
+    CharacterStatusModule,
+    LogStatusModule
   ]
 })
 export class TotalModule  implements NestModule{

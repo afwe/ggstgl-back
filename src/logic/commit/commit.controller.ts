@@ -57,13 +57,22 @@ export class CommitController{
     passCommit(@Body() bodyData, @Request() req, @Response() res){
         let callBack = async ()=>{
             let user = await this.userService.getById(bodyData.userId);
-            if(user.isAdmin == 0){
-                return async()=>{
+            if(!user){
+                let func = async()=>{
                     return {
                         code: 500,
                         msg: '权限不足'
                     }
-                }
+                };
+                return func();
+            } else if(user.isAdmin==0){
+                let func = async()=>{
+                    return {
+                        code: 500,
+                        msg: '权限不足'
+                    }
+                };
+                return func();
             }
             let commit = await this.CommitService.getById(bodyData.commitId);
             if(commit.commitType==0){
@@ -94,13 +103,22 @@ export class CommitController{
     rejectCommit(@Body() bodyData, @Request() req, @Response() res){
         let callBack = async ()=>{
             let user = await this.userService.getById(bodyData.userId);
-            if(user.isAdmin == 0){
-                return async()=>{
+            if(!user){
+                let func = async()=>{
                     return {
                         code: 500,
                         msg: '权限不足'
                     }
-                }
+                };
+                return func();
+            } else if(user.isAdmin==0){
+                let func = async()=>{
+                    return {
+                        code: 500,
+                        msg: '权限不足'
+                    }
+                };
+                return func();
             }
             let commit = await this.CommitService.getById(bodyData.commitId);
             console.log('??');
